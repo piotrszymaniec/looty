@@ -16,7 +16,6 @@ import scala.scalajs.js
 
 
 class PoeCacherDemo extends PoeCacher {
-  //Demo version needs to just read the whole store off disk then have it in a data structure
   private var jsonCache: Option[js.Dynamic] = None
   private val account: String = "UnknownAccount!"
 
@@ -50,10 +49,9 @@ loadJson().map(_.asJsDict[StashTab](s"$account-$league-$tabIdx-stis"))
 
   def clearLeague(league: String): Future[Unit] = Future.successful(Unit)
 
-  //added missing ones
   override def getAccountNameAndRealm: Future[(String, Option[String])] = {
-    val f1 = getAccountName
-    val f2 = getRealm
+    val f1 = Future("UnknownAccount!")
+    val f2 = Future(Option(""))
     f1.zip(f2)
   }
 

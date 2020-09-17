@@ -506,29 +506,51 @@ a {
   .col-main {
     margin-bottom: 5px;
     padding: 5px 0 0 5px;
+
+    a.col-btn {
+      color: #ffffffbd;
+    }
   }
 
   .group-div {
 
     .col-btn-toggle {
-      /*margin-left:5px;*/
-      /*now toggle buttons are after group-name so they have to had a little space between them and affix buttons*/
       margin-right: 12px;
       box-shadow: none !important;
+
+      a.col-btn {
+        color: #b7b8b98c;
+        font-size: 1.2em;
+        border-bottom: 1px solid black;
+        border-right: 1px solid black;
+        /*folowing color code - red for minus*/
+        .minus:hover {
+          color: #ff0000a1;
+          background: #ff00004f;
+        }
+
+        /* more color theme*/
+        .minus2:hover {
+          color: #edf3f9 !important;
+          background: #535157;
+        }
+
+        /*folowing color code - green for plus*/
+        .plus:hover {
+          color: #51ff02;
+          background: #9acd324d;
+      }
     }
     .group-name {
-      color: black;
+      width: 174px;
+      display: inline-block;
+      text-align: right;
+      padding-right: 11px;
+      color: #ffffffb5;
       font-size: 1.1em;
-
-width: 174px;
-display: inline-block;
-text-align: right;
-padding-right: 11px;
-color: #ffffffb5;
-font-size: 1.1em;
-text-shadow: 1px 1px 0px #000;
-border-bottom: 1px solid #00000045;
-padding-bottom: 7px;
+      text-shadow: 1px 1px 0px #000;
+      border-bottom: 1px solid #00000045;
+      padding-bottom: 7px;
     }
 
     .col-div {
@@ -538,15 +560,18 @@ padding-bottom: 7px;
 
     /* mod enabled  */
     .col-div.on-col {
-      color: black;
-      background-color: @green-300;
-      //text-decoration: underline;
+      text-shadow: -1px 2px 4px #000;
+      border: 1px solid #947232;
+      background-color: #5a3806 !important;
+      color: #d8b169 !important;
+
     }
     /* mod disabled  */
     .col-div.off-col {
-      color: black;
-      background-color: #ececec;
-      /*background-color: @red-300;*/
+      color: #f7f7f76e !important;
+      background-color: #313033 !important;
+      border: 1px solid #625d5d75;
+      letter-spacing:1px
     }
   }
 }

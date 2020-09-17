@@ -19,6 +19,15 @@ class SettingsView(implicit val pc: PoeCacher) extends View {
     var el = ele.append("<div id='settings'></div>")
     el = jq("#settings")
 
+    val lsKey = "$"
+
+
+    val savedSetiingsList = LocalStorageSaver.get(lsKey).nullSafe
+                                       .map(x=>global.JSON.parse(x))
+                                       .map(_.asJsArr[js.Any].toList.map(x => CurrencyConversion.fromJs(x)))
+                                       .getOrElse(CurrencyConversion.defaults)
+    pc.getAllItems().andThen()
+
     locally{
       val txt = jq("<input></input>")
       val btn = jq("<button>Save</button>")

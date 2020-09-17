@@ -35,20 +35,37 @@ Quoted from Steve Yegge's [Excellent Blog Post](http://steve-yegge.blogspot.com/
 ##
 #### PathofExile forum [post](http://www.pathofexile.com/forum/view-thread/832233)
 ##
-### Newer todos:
-- Card Views
-  - allows seeing gems / uniques etc as items in a 2d grid of cells
-    - each cell is like a card
-  - beefs up the map view
-    - though replace the map view with an atlas view
 
-- Quick comparision of item to all other items in the stash
-  - allows for seeing how the item stacks up to all other items
-    - maybe use something like spark-line bar charts
-    - will be great for ssf
 ## Developer Log
 ```code
 # Version History
+## fork-0.2.1.78 (2020-09-12)
+- Added types
+	- "Organs" (from Metamorph league)
+	- Timeless Jewel
+- Added columns for affixes like :
+	- "Regenerate (amount) Life/Mana per Second"
+	- "Regenerate (amount)% of Life/Mana per Second"
+	- "Grants LeveL (skillLevel) (skillName) Skill" - skillLevel
+	- "Grants LeveL (skillLevel) (skillName) Skill" - skillName
+	- added +% maximum life affix
+	- influences (elder, shaper, crusader, redeemer, hunter, warlord)
+	- enchantments for gloves, boots, helmets from Labirynth, rings and amulets (from Cassia - Blight league), cluster jewels (Delirium)
+- Added properties (mostly used by jewels)
+	- "Limited to"
+	- "Radius"	
+- You can now see names and quantity for enchantments
+	- for gloves, boots, helmets from Labirynth
+	- rings and amulets (from Cassia - Blight league)
+	- cluster jewels, "Adds x Passive Skills", "Added Small Passive Skills grant: xxx" (Delirium)
+- Added column mod "unparsed"
+	It gathers mods without its own proper column, it looks like "a| b| c| ..."  	
+	You can search them via matching text. For example:
+	when want to find all "zombie" items you have, type "zombies" into "unparsed" column field and it should show all items,
+	that have word "zombie" in affixes. I don't have any other solution for now. :)
+- UI background readability improvements on Home, Xp, Wealth, Maps, Settings pages
+  - switched off Maps and Poebuilder supages
+
 ## 0.2.1.77 (2019-11-18)
 Special thanks to Traf27 for contributing several fixes that keep looty going!
 Chrome extension works again, hurray
@@ -59,7 +76,12 @@ firefox review placation
 
 ## 0.2.1.75 (2019-05-01)
 Jewel Support
+```
 
+<details><summary>Even more history</summary>
+<p>
+
+```code
 ## 0.2.1.74 (2019-04-26)
 Realm can be set under settings, set it to sony in order for looty to
 work with the ps4 version of PoE, other realms may work as well.
@@ -72,12 +94,7 @@ Looty now available in Firefox.
 ## 0.2.1.72 (2019-04-20)
 Holy Saturday, I must be high, Looty Lives! It's a miracle!
 Updating Affixes
-```
 
-<details><summary>Even more history</summary>
-<p>
-
-```code
 ## 0.2.1.71 (2018-03-15)
 Remove google analytics code
 
@@ -355,6 +372,16 @@ latest changes to the APIs from the abyssal leagues.
 
 
 ## Todo
+<details><summary>Authors original todo's</summary>
+<p>
+
+### Newer todos:
+- Card Views
+  - allows seeing gems / uniques etc as items in a 2d grid of cells
+    - each cell is like a card
+  - beefs up the map view
+    - though replace the map view with an atlas view
+
 ### For pure love of the loot
 - [ ] Collectors view for Uniques (grayed out pictures for Uniques not obtained)
 - [ ] Trophy room that allows for displaying epic items. With categories (Best DPS Item, Highest Score By Slot)
@@ -406,18 +433,21 @@ latest changes to the APIs from the abyssal leagues.
 - [ ] Simplify Demo Home Page to be a lot more like http://haste-lang.org/
 - [ ] Tutorial video on searches operators within the boxes
 - [ ] Add feedback / suggestion options inside of the extension itself
+</p>
+</details>
 
 ## Development instructions
 #### Offline development
 **You can switch data source for Looty**  
 https://github.com/benjaminjackman/looty/blob/master/looty/src/main/scala/looty/LootyMain.scala#L40  
 
-
-```scala
+With class PoeCacherJSON you have ability to load data from .json file when you place it in build directiory /data/ 
+To check it out just switch it in place of    
+```
  implicit val pc: PoeCacher = {
     if (extensionMode) {
       // load data from /data/sample-items.json instead of GGG servers
-      //new PoeCacherDemo()
+      //new PoeCacherJSON()
       // fetch data from GGG API
       new PoeCacherChrome()
     } else {

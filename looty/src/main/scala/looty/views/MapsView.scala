@@ -58,10 +58,10 @@ object MapsView {
     .render { (p) =>
     val mapsByLvl = p.groupBy(_.mapLevel)
     <.div(
-      mapsByLvl.toList.sortBy(_._1).map { case (lvl, ms) =>
+      mapsByLvl.toList.sortBy(_._1).reverse.map { case (tier, ms) =>
         <.div(
-          <.span("Level=", lvl, " "),
-          <.span("Count=", ms.size, ": "),
+          <.span(ms.size, "x "),
+          <.span("Tier ", tier, " "),
           ms.sortBy(_.displayName).map(m=>MapComponent(m))
         )
       }
@@ -74,7 +74,7 @@ object MapsView {
     <.div(
       ^.display := "inline-block",
       item.displayName,
-      <.img(^.src := item.item.getIconUrl)
+      <.img(^.src := item.item.getIconUrl, (^.`class` := "Icon"))
     )
   }
     .build

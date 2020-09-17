@@ -42,6 +42,11 @@ object AjaxHelp {
     val Delete = Value("Delete")
   }
 
+  object HttpResponse { //albo case class HttpResponse
+    //chodzi o to zebu przechwycic w ktoryms czasie odpowiedz requesta i zbadac jakie sa naglowki rzeby wywnioskowac  czas odbicia
+
+  }
+
   def apply[A](url: String, requestType: HttpRequestTypes.HttpRequestType, data: Option[String]): Future[A] = {
     JsPromises.wrap[A] {
       val req = js.Dynamic.literal(url = url, `type`=requestType.toString).asJsDict[String]

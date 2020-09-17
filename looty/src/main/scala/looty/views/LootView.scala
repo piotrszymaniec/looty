@@ -3,7 +3,7 @@ package views
 
 import looty.poeapi.PoeTypes.Leagues.League
 import looty.views.loot.{Columns, ColumnsPane, Containers, Filters, UpgradesPane}
-import org.scalajs.dom.{Blob, BlobPropertyBag}
+import org.scalajs.dom.{Blob, BlobPropertyBag, KeyboardEvent}
 import org.scalajs.jquery.JQuery
 
 import scala.scalajs.js
@@ -11,6 +11,7 @@ import looty.model.{ComputedItem, ComputedItemProps, LootContainerId}
 import scala.concurrent.Future
 import looty.poeapi.PoeCacher
 import scala.language.postfixOps
+import org.scalajs.dom.ext.KeyCode
 
 
 case class FilterCell(columnId: String, initValue: Option[String])(onChange: (String) => Unit) {
@@ -287,7 +288,8 @@ class LootView(val league: League)(implicit val pc: PoeCacher) extends View {
       // Although we should add sufficient minimum column width 
       // for particular ex. alphanumeric fields
       // so their data visiblity would not be obscured
-      o.fullWidthRows = true 
+      o.fullWidthRows = true
+      o.syncColumnCellResize = true
 
       o.dataItemColumnValueExtractor = (item: ComputedItem, column: js.Dynamic) => {
         renderCell(item, column)
@@ -377,6 +379,29 @@ class LootView(val league: League)(implicit val pc: PoeCacher) extends View {
       grid.invalidate()
       grid.render()
     })
+  }
+
+  def old(el: JQuery): Unit = {
+
+
+    jq(window).on("keydown", f)
+    el.append(itemDetailHover.el)
+
+
+  }
+
+  val f: js.Function1[KeyboardEvent, _] = (e: KeyboardEvent) => {
+    e.keyCode match {
+      case KeyCode.alt =>
+
+          val row = grid.getCellFromEvent(e).row
+          if (row.nullSafe.isDefined) {
+            itemDetailHover.setFirstItem(Some(grid.getDataItem(row).asInstanceOf[ComputedItem]))
+            itemDetailHover.show(500,500, true)
+          }
+      case _ =>
+        itemDetailHover.hide()
+    }
   }
 
   private def addMouseover() {

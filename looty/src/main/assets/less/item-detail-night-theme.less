@@ -1,0 +1,90 @@
+@import "material/buttons";
+
+
+#item-details {
+  .BoxShadowHelper(5)
+}
+
+.item-detail {
+
+  .item-name {
+    font-size: 20px;
+    font-weight: bolder;
+  }
+
+   .authors-note {
+    display:block;
+    margin-top:0.3em;
+    color: #555;
+   }
+
+  float: left;
+  max-width: 400px;
+  color: white;
+  border-width: 4px;
+  border-style: solid;
+  border-color: white;
+//  border-radius: 10px;
+  opacity: .9;
+  background-color: black;
+
+
+//  Currency	#aa9e82	170 158 130
+//  Gem	#1ba29b	27 162 155
+//  Normal	#c8c8c8	200 200 200
+//  Magic	#8888ff	136 136 255
+//  Rare	#ffff77	255 255 119
+//  Unique	#af6025	175 96 37
+
+  &.unknown {
+    border-color: rgb(128, 128, 128);
+    font-color: rgb(128, 128, 128);
+  }
+
+  &.frame-type-normal {
+    border-color: rgb(255, 255, 255);
+    color: rgb(255, 255, 255);
+
+  }
+
+  &.frame-type-magic {
+    border-color: rgb(128, 128, 255);
+    color: rgb(128, 128, 255);
+  }
+
+  &.frame-type-rare {
+    border-color: rgb(255, 255, 0);
+    color: rgb(255, 255, 0);
+  }
+
+  &.frame-type-unique {
+    border-color: rgb(192, 64, 64);
+    color: rgb(192, 64, 64);
+  }
+
+  &.frame-type-gem {
+    border-color: rgb(0, 192, 192);
+    color: rgb(0, 192, 192);
+  }
+
+  &.frame-type-currency {
+    border-color: rgb(165, 146, 99);
+    color: rgb(165, 146, 99);
+  }
+
+  &.frame-type-quest {
+    border-color: rgb(0, 255, 0);
+    color: rgb(0, 255, 0);
+  }
+
+  &.frame-type-prophecy {
+    border-color: rgb(128, 128, 0);
+    color: rgb(128, 128, 0);
+  }
+
+  &.frame-type-relic {
+    border-color: rgb(64, 192, 64);
+    color: rgb(64, 192, 64);
+  }
+
+}
