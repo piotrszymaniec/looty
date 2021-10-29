@@ -385,6 +385,7 @@ object AffixesParser {
 
   //Shock
   regex1("Grants Immunity to Shock for (\\d+) seconds if used while Shocked")(_.flask.immunityTime += _)
+  flaskRegex("Grants Immunity to Shock for (\\d+) seconds if used while Shocked")(_.flask.removesShocked = true)
   simple0("Immunity to Shock during Flask Effect")(_.flask.removesShocked = true)
   simple0("Grants Immunity to Shock for 4 seconds if used while Shocked")(_.flask.removesShocked = true)
 
