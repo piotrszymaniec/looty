@@ -65,7 +65,7 @@ trait ReasonDetails extends js.Object {
 }
 
 object ReasonDetailsHelper {
-  def siteIsBypassed(reason:ReasonDetails):Boolean = if (reason.asInstanceOf[ReasonDetails].getResponseHeader("cf-chl-bypass") == "1") true else false
+  def siteIsCaptchaProtected(reason:ReasonDetails):Boolean = if (reason.asInstanceOf[ReasonDetails].getResponseHeader("cf-chl-bypass") == "1") true else false
 }
 
 //cheat-sheet if more things for ReasonDetails needed in future

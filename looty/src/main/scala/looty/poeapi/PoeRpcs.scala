@@ -1,7 +1,7 @@
 package looty
 package poeapi
 
-import looty.util.AjaxHelp
+import looty.util.{AjaxHelp, ReasonDetails, ReasonDetailsHelper}
 import AjaxHelp.HttpRequestTypes
 import AjaxHelp.HttpRequestTypes.HttpRequestType
 import looty.util.JsPromises.JsFutureFailure
@@ -124,9 +124,19 @@ object PoeRpcs {
             //Reason is from the jquery request
             reason.asJsAny.asJsDyn.status.asInstanceOf[Any] match {
               case status : Int =>
+                if (status == 400) {
+                  window.console.log("Received JSFuture Failure, status == 400 bad parameters", res.asJsAny)
+                  p.completeWith(Future.failed(BadParameters(s"called $url with ${JSON.stringify(params)}")))
+                } else
                 if (status == 401) {
                   window.console.log("Received JSFuture Failure, status == 401 You are not logged into wwww.pathofexile.com site", res.asJsAny)
                   p.completeWith(Future.failed(UnauthorizedAccessFailure(""+res)))
+                } else
+                if (status == 403) {
+                    window.console.log("Received JSFuture Failure, no status == 403", res.asJsAny)
+                    val cfCaptchaActive = ReasonDetailsHelper.siteIsCaptchaProtected(reason.asInstanceOf[ReasonDetails])
+                    if (cfCaptchaActive) p.completeWith(Future.failed(CloudflareCaptcha(""+res)))
+                    else p.completeWith(Future.failed(ThrottledFailure(""+res)))
                 } else
                 if (status == 429) {
                   window.console.log("Received JSFuture Failure, no status == 429 Definitely throttling", res.asJsAny)
@@ -171,6 +181,16 @@ object PoeRpcs {
             qi.debugLog(s"Get => Throttled Failure $msg")
             console.debug("Throttled, cooling off ", qi.url, qi.params, msg)
             Alerter.warn(s"""Waiting in queue to download more items for you. It will resume downloading in less then 60sec""")
+            scheduleQueueCheck(true)
+          case Failure(CloudflareCaptcha(msg)) =>
+            qi.debugLog(s"Get => Cloudflare is blocking site behind captcha $msg")
+            console.debug("Cloudflare is blocking site behind captcha  ", qi.url, qi.params, msg)
+            Alerter.warn(s"""Go to ${basePoeUrl} and solve captcha puzzle. When poe site will load, go back and refresh Looty page (F5)""")
+            scheduleQueueCheck(true)
+          case Failure(BadParameters(msg)) =>
+            qi.debugLog(s"Get => Invalid query - check parameters $msg")
+            console.debug("Invalid query - check parameters ", qi.url, qi.params, msg)
+            Alerter.error(s"""Unexpected error occurred, contact author on poe <a target="_blank" href="https://www.pathofexile.com/forum/view-thread/832233/">forum</a>, or create an issue on <a target="_blank" href="https://github.com/benjaminjackman/looty/issues/new">github</a>""")
             scheduleQueueCheck(true)
           case Failure(UnauthorizedAccessFailure(msg)) =>
             qi.debugLog(s"Get => Unauthorized Access Failure $msg")
@@ -253,6 +273,7 @@ object PoeRpcs {
 
   case class BadParameters(msg: String) extends Exception
   case class ThrottledFailure(msg: String) extends Exception
+  case class CloudflareCaptcha(msg: String) extends Exception
   case class UnauthorizedAccessFailure(msg: String) extends Exception
 
 
