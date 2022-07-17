@@ -9,10 +9,9 @@ Built using [ScalaJs](http://www.scala-js.org/) based on [GPLv2](http://www.gnu.
 
 ## Table of Contents
 ### [1. Statement of Inspiration](#introduction)
-### [2. How to contribute](#contribution)
-### [3. Player Support](#support)
-### [4. TODO](#future-features)
-### [5. Developers Log](#version-history)
+### [2. Player Support](#support)
+### [3. How to contribute](#contribution)
+### [4. Developers Log](#version-history)
 
 <a name="introduction" />
   
