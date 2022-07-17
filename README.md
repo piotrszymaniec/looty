@@ -643,7 +643,7 @@ latest changes to the APIs from the abyssal leagues.
 Author's old[trello board](https://trello.com/b/xr7dx96M/looty).
 <details><summary>Author's old todo's</summary>
 <p>
-
+```
 ### Newer todos:
 - Card Views
   - allows seeing gems / uniques etc as items in a 2d grid of cells
@@ -703,6 +703,7 @@ Author's old[trello board](https://trello.com/b/xr7dx96M/looty).
 - [ ] Tutorial video on searches operators within the boxes
 - [ ] Add feedback / suggestion options inside of the extension itself
 ```
+	
 </p>
 </details>
 
