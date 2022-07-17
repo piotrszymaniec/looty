@@ -36,7 +36,7 @@ Feel free to post bugs, questions, or feature requests [here](https://github.com
 Also in Lootys thread on official PathofExile forum [post](http://www.pathofexile.com/forum/view-thread/832233)  
 Please spread a word about Looty if you like it!  
 
-<a name="development" />
+<a name="contribution" />
 
 ## How to contribute 
 Below you will find development instructions
