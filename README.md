@@ -89,41 +89,41 @@ Extension can be imported to chrome through development mode. Choose this direct
 looty/target/web/public/main/
 ```
 
-### Firefox no longer supports extension this, because of long process of aquiring permission and policy issues
+### How to build for Google Chrome reviewers and release
 
-### How to build for Google Chrome reviewers and release:
-Bump version number in:
+_Firefox no longer supports this extension, because of long process of aquiring permission and policy issues._
+
+Bump version number in:  
 ```    
 ./looty/src/main/public/manifest.json
 ./looty/src/main/scala/looty/views/HomeView.scala
 ```    
- **Linux**:
+ **Linux**:  
 ```
 bin/deploy
 ```
 
 `/build/build.zip` will have the packaged file  
 `/build/buildffsrc.zip` will have firefox release package file
-
-**Windows**:
+  
+**Windows**:  
 ```
 bin\sbt-win.cmd
 ```    
-in sbt, you can optionally run
+in sbt, you can optionally run 
 ```
 clean
 ```
-which clears cache and contents of build directory.  
-After that run:
+which clears cache and contents of build directory.    
+After that run:  
 ```    
-    compile
-    fullOptJS    
+compile
+fullOptJS    
 ```
-
-Because windows does not come with default zip command line tool, which could automate this part, we have to zip files ourselves. :crying_cat_face:  
-Zip following files and directories into choose-some-name.zip 
-(for installation in ff change extension to irx)
-    
+  
+Because windows does not come with default zip command line tool, which could automate this part, we have to zip files ourselves. :crying_cat_face:    
+Zip following files and directories into choose-some-name.zip   
+     
     jslib/
     images/
     less/
@@ -131,16 +131,13 @@ Zip following files and directories into choose-some-name.zip
     popup.html
     looty-opt.js
     manifest.json
-    
+      
 Additionaly for release version:    
     
     looty/
     project/
     bin/
     README.md
-
-
-
 
 **You can switch data source for Looty**  
 https://github.com/benjaminjackman/looty/blob/master/looty/src/main/scala/looty/LootyMain.scala#L40  
@@ -643,12 +640,9 @@ latest changes to the APIs from the abyssal leagues.
  
 <a name="contribution" />
 
-#### If you would like to improve Looty, here are [**Development Instructions**](./contribution.md)  
 
-#### Public [trello board](https://trello.com/b/xr7dx96M/looty) for tracking progress on tasks I am actively working on.
-
-## Todo
-<details><summary>Authors original todo's</summary>
+Author's old[trello board](https://trello.com/b/xr7dx96M/looty).
+<details><summary>Author's old todo's</summary>
 <p>
 
 ### Newer todos:
