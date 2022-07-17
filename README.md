@@ -1,22 +1,22 @@
-Looty
+# Looty - Player Stash Items Data manager
 =====
 A browser extension for Path of Exile that makes inventory searching fun!
+
 
 [Chrome Web Store](https://chrome.google.com/webstore/detail/looty/ajfbflclpnpbjkfibijekgcombcgehbi?hl=en&gl=US)
 
 Built using [ScalaJs](http://www.scala-js.org/) based on [GPLv2](http://www.gnu.org/licenses/gpl-2.0.html)
 
-### How to build for firefox reviewers:
-#### Prequisites
-1. Have nvs (https://github.com/jasongin/nvs) installed for node (This version of ScalaJS needs node version 8 installed)
-2. Have java8 installed (This version of Scala doesn't support later jvms)
+# Table of Contents
+## [1. Statement of Inspiration](#introduction)
+## [2. How to contribute](#contribution)
+## [3. Player Support](#support)
 
-run bin/deploy
+## [4. TODO](#future-features)
+## [5. Version history](#version-history)
 
-build/build.zip will have the packaged file
-
+<a name="introduction" />
 ## Statement of Inspiration
-
 Quoted from Steve Yegge's [Excellent Blog Post](http://steve-yegge.blogspot.com/2012/10/the-borderlands-2-gun-discarders-club.html) About Borderlands 2, which is another loot game
 >Here's the thing, though. It's not just about capacity. If Gearbox wants to do this Right, by which I mean pull their heads out and do something that nobody in the game industry has ever done before, what they really need to do is give players a database.
 >
@@ -26,17 +26,20 @@ Quoted from Steve Yegge's [Excellent Blog Post](http://steve-yegge.blogspot.com/
 >
 >If you start by formulating the basic problem as: "How do I manage a collection of a thousand guns," then your UX guys should be able to come up with something acceptable. No — you know what? Fuck acceptable. They should be able to come up with something awesome, something in keeping with the innovation and forward-looking badassery that we've all come to associate with Gearbox and Borderlands.
 
-##
-#### If you would like to improve Looty, here are [**Development Instructions**](#development-instructions)  
-##
-#### Feel free to post bugs, questions, or feature requests [here](https://github.com/benjaminjackman/looty/issues).
-##
-#### PathofExile forum [post](http://www.pathofexile.com/forum/view-thread/832233)
-##
 
+<a name="support" />
+#### Feel free to post bugs, questions, or feature requests [here](https://github.com/benjaminjackman/looty/issues).
+### Also in Lootys thread on official PathofExile forum [post](http://www.pathofexile.com/forum/view-thread/832233)
+### Please spread a word about Looty if you like it!
+
+<a name="version-history" />
 ## Developer Log
 ```code
-# Version History
+# Version History - last updates
+## 0.2.1.84 (2022-04-12)
+Features
+  - added cluster jewel filter type
+
 ## 0.2.1.83 (2021-10-27)
 Features
   - added Scourge items
@@ -68,8 +71,13 @@ Fixes
 Dev
   - added to readme various useful dev docs
   - added boolean variable to turn off console parsing messages (by default they are shown, as before)
+```
 
-## 0.2.1.81 (2021-04-25) (Traf contributed this update)
+<details><summary>Even more history</summary>
+<p>
+
+```code
+## 0.2.1.81 (2021-04-25) (piotrszymaniec contributed this update)
 
 Features
 - Added input field to filter mod buttons (above mod list on the left) to help you choose desired ones faster.
@@ -137,7 +145,7 @@ Fixes
   - crafted mod, showing if item has crafted mod is fixed
 
 ## 0.2.1.79 (2021-01-15)
-Special thanks, again, to Traf27 for keeping Looty going!
+Special thanks, again, to piotrszymaniec for keeping Looty going!
 
 Design
 - Added dark theme! to easy strain on your eyes at night - switch is on the right side
@@ -168,13 +176,7 @@ Features
 	- changed behavior of Evasion Rating and Armor increased mods, added their local variations, and added local Energy Shield increase
 	- armor and evasion rating are correctly calculated and now are global - it recognize "% increased Armor" and "% increased Evasion Rating" on talismans, rings, belts, jewels
 	- items with dexterity include "global Evasion Rating" column (as every 5 dexterity increases Evasion Rating by 1 %)
-```
-
-<details><summary>Even more history</summary>
-<p>
-
-```code
-
+    
 ## 0.2.1.78 (2020-09-17)
 - Added types
 	- "Organs" (from Metamorph league)
@@ -210,7 +212,7 @@ Features
 	- changed color of disabled column to light grey
 
 ## 0.2.1.77 (2019-11-18)
-Special thanks to Traf27 for contributing several fixes that keep looty going!
+Special thanks to piotrszymaniec for contributing several fixes that keep looty going!
 Chrome extension works again, hurray
 Silence some console warnings with localStorage.setItem("SQUELCH_WARNINGS", "true") inside the console
 
@@ -503,8 +505,10 @@ latest changes to the APIs from the abyssal leagues.
 </details>
 
  
-
+<a name="contribution" />
 ##
+#### If you would like to improve Looty, here are [**Development Instructions**](./contribution.md)  
+
 #### Public [trello board](https://trello.com/b/xr7dx96M/looty) for tracking progress on tasks I am actively working on.
 
 
@@ -574,6 +578,7 @@ latest changes to the APIs from the abyssal leagues.
 </p>
 </details>
 
+<a name="development" />
 ## Development instructions
 #### Offline development
 **You can switch data source for Looty**  
