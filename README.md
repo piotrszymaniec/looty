@@ -1,22 +1,24 @@
 # Looty - Player Stash Items Data manager
-=====
-A browser extension for Path of Exile that makes inventory searching fun!
+
+### A browser extension for Path of Exile that makes inventory searching fun!
 
 
-[Chrome Web Store](https://chrome.google.com/webstore/detail/looty/ajfbflclpnpbjkfibijekgcombcgehbi?hl=en&gl=US)
+Latest release [Chrome Web Store](https://chrome.google.com/webstore/detail/looty/ajfbflclpnpbjkfibijekgcombcgehbi?hl=en&gl=US)
 
 Built using [ScalaJs](http://www.scala-js.org/) based on [GPLv2](http://www.gnu.org/licenses/gpl-2.0.html)
 
-# Table of Contents
-## [1. Statement of Inspiration](#introduction)
-## [2. How to contribute](#contribution)
-## [3. Player Support](#support)
-
-## [4. TODO](#future-features)
-## [5. Version history](#version-history)
+## Table of Contents
+### [1. Statement of Inspiration](#introduction)
+### [2. How to contribute](#contribution)
+### [3. Player Support](#support)
+### [4. TODO](#future-features)
+### [5. Developers Log](#version-history)
 
 <a name="introduction" />
-## Statement of Inspiration
+  
+## Statement of Inspiration 
+
+<blockquote cite="">
 Quoted from Steve Yegge's [Excellent Blog Post](http://steve-yegge.blogspot.com/2012/10/the-borderlands-2-gun-discarders-club.html) About Borderlands 2, which is another loot game
 >Here's the thing, though. It's not just about capacity. If Gearbox wants to do this Right, by which I mean pull their heads out and do something that nobody in the game industry has ever done before, what they really need to do is give players a database.
 >
@@ -25,22 +27,155 @@ Quoted from Steve Yegge's [Excellent Blog Post](http://steve-yegge.blogspot.com/
 >What BL1 needed was a way for you to effectively manage a collection of a thousand guns. What if you want to look at all your Mashers? Or all your weapons by type, or by elemental damage, or by manufacturer? I'm not asking for a data warehouse here, or for some fancy text-based console-query UI. I mean, -I- would use it, but obviously we want to keep this mainstream.
 >
 >If you start by formulating the basic problem as: "How do I manage a collection of a thousand guns," then your UX guys should be able to come up with something acceptable. No — you know what? Fuck acceptable. They should be able to come up with something awesome, something in keeping with the innovation and forward-looking badassery that we've all come to associate with Gearbox and Borderlands.
-
-
+</blockquote>
+  
 <a name="support" />
-#### Feel free to post bugs, questions, or feature requests [here](https://github.com/benjaminjackman/looty/issues).
-### Also in Lootys thread on official PathofExile forum [post](http://www.pathofexile.com/forum/view-thread/832233)
-### Please spread a word about Looty if you like it!
+
+## Player Support
+Feel free to post bugs, questions, or feature requests [here](https://github.com/benjaminjackman/looty/issues)  
+Also in Lootys thread on official PathofExile forum [post](http://www.pathofexile.com/forum/view-thread/832233)  
+Please spread a word about Looty if you like it!  
+
+<a name="development" />
+
+## How to contribute 
+Below you will find development instructions
+
+### Prequisites
+1. Have nvs (https://github.com/jasongin/nvs) installed for node (This version of ScalaJS needs node version 8 installed)  
+2. Have java8 installed (https://github.com/frekele/oracle-java/releases) (This version of Scala doesn't support later jvms)  
+3. Have SBT (Simple Build Tool) for compiling Scala into js. This is already __included__ in looty project (sbt-launch-0.13.0.jar)  
+  
+### Useful links
+**Dev docs**
+- [Official Path of Exile Dev Docs](https://www.pathofexile.com/developer/docs)
+- [Chuanhsing's PoE complete API documentation with missing endpoins in PoE official dev docs](https://poedb.tw/us/poe-api)
+- [RePoe](https://github.com/brather1ng/RePoE) brather1ng repository of Path of Exile resources. Contains the generated data from GGPK file in JSON format
+- [Important changes in PoE for developers - official forum where Novynn post threads with changes for current temporary league](https://www.pathofexile.com/forum/view-forum/674)
+
+**Tools**
+- [Firefox extension documentation](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions)
+- [Scala documentation](https://docs.scala-lang.org/)
+- [Scala 2.12 Library](https://devdocs.io/scala~2.12_library/) parsed doc from previous site Library API but easier to search
+- [Itellij IDEA](https://www.jetbrains.com/idea/) Java IDE with native Scala support
+---
+
+#### Once you clone repository, run following commands to start development process.
+
+#### Run sbt tool
+**Linux**
+```
+bin/sbt
+```
+**Windows**
+```
+bin\sbt-win.cmd
+```    
+Following commands compile soruce code to single javascript file
+```
+fastOptJS
+```    
+You can watch changes to .js and generate it on the fly for development purposes.
+```
+~fastOptJS
+```
+
+Javascript file:  
+```
+looty/target/web/public/main/looty-fastopt.js
+```
+Extension can be imported to chrome through development mode. Choose this directory when prompted by browser
+```
+looty/target/web/public/main/
+```
+
+### Firefox no longer supports extension this, because of long process of aquiring permission and policy issues
+
+### How to build for Google Chrome reviewers and release:
+Bump version number in:
+```    
+./looty/src/main/public/manifest.json
+./looty/src/main/scala/looty/views/HomeView.scala
+```    
+ **Linux**:
+```
+bin/deploy
+```
+
+`/build/build.zip` will have the packaged file  
+`/build/buildffsrc.zip` will have firefox release package file
+
+**Windows**:
+```
+bin\sbt-win.cmd
+```    
+in sbt, you can optionally run
+```
+clean
+```
+which clears cache and contents of build directory.  
+After that run:
+```    
+    compile
+    fullOptJS    
+```
+
+Because windows does not come with default zip command line tool, which could automate this part, we have to zip files ourselves. :crying_cat_face:  
+Zip following files and directories into choose-some-name.zip 
+(for installation in ff change extension to irx)
+    
+    jslib/
+    images/
+    less/
+    looty.html
+    popup.html
+    looty-opt.js
+    manifest.json
+    
+Additionaly for release version:    
+    
+    looty/
+    project/
+    bin/
+    README.md
+
+
+
+
+**You can switch data source for Looty**  
+https://github.com/benjaminjackman/looty/blob/master/looty/src/main/scala/looty/LootyMain.scala#L40  
+
+With help of class PoeCacherDemo you have ability to load data from .json file when you place it in build directory /data/ 
+To check it out just switch it in place of    
+```
+ implicit val pc: PoeCacher = {
+    if (extensionMode) {
+      // load data from /data/sample-items.json instead of GGG servers
+      //new PoeCacherJSON()
+      // fetch data from GGG API
+      new PoeCacherChrome()
+    } else {
+      new PoeCacherExileTools()
+    }
+  }
+```  
+Now you are free to use whatever item data you wish, and test it to your heart content without worrying for download API limits. 
+  
+If you would like to prepare your own sample-item.json file. Here's [how-to](./HowTo-sample-items-file.md).  
+
+
 
 <a name="version-history" />
-## Developer Log
-```code
-# Version History - last updates
-## 0.2.1.84 (2022-04-12)
+
+### Developers Log
+
+```
+## Version History - last updates
+### 0.2.1.84 (2022-04-12)
 Features
   - added cluster jewel filter type
 
-## 0.2.1.83 (2021-10-27)
+### 0.2.1.83 (2021-10-27)
 Features
   - added Scourge items
     - new column scourged - to quickly check which items are scourged (works same as corrupted etc.)
@@ -55,7 +190,7 @@ Features
   example: you are looking for ring, but you would like to see all rings except breach ones, type in "!breach" in column "tpeln" 
   example: you are looking for all not crafted items, type in "!1" in column "crafted"
   
-## 0.2.1.82 (2021-07-12)
+### 0.2.1.82 (2021-07-12)
 Features
   - added Recover # of Energy Shield on Kill
   - added Recover # Life on Kill
@@ -73,10 +208,11 @@ Dev
   - added boolean variable to turn off console parsing messages (by default they are shown, as before)
 ```
 
-<details><summary>Even more history</summary>
+<details>
+<summary>Even more history</summary>
 <p>
 
-```code
+```
 ## 0.2.1.81 (2021-04-25) (piotrszymaniec contributed this update)
 
 Features
@@ -506,12 +642,10 @@ latest changes to the APIs from the abyssal leagues.
 
  
 <a name="contribution" />
-##
+
 #### If you would like to improve Looty, here are [**Development Instructions**](./contribution.md)  
 
 #### Public [trello board](https://trello.com/b/xr7dx96M/looty) for tracking progress on tasks I am actively working on.
-
-
 
 ## Todo
 <details><summary>Authors original todo's</summary>
@@ -575,128 +709,9 @@ latest changes to the APIs from the abyssal leagues.
 - [ ] Simplify Demo Home Page to be a lot more like http://haste-lang.org/
 - [ ] Tutorial video on searches operators within the boxes
 - [ ] Add feedback / suggestion options inside of the extension itself
+```
 </p>
 </details>
-
-<a name="development" />
-## Development instructions
-#### Offline development
-**You can switch data source for Looty**  
-https://github.com/benjaminjackman/looty/blob/master/looty/src/main/scala/looty/LootyMain.scala#L40  
-
-With class PoeCacherDemo you have ability to load data from .json file when you place it in build directory /data/ 
-To check it out just switch it in place of    
-```
- implicit val pc: PoeCacher = {
-    if (extensionMode) {
-      // load data from /data/sample-items.json instead of GGG servers
-      //new PoeCacherJSON()
-      // fetch data from GGG API
-      new PoeCacherChrome()
-    } else {
-      new PoeCacherExileTools()
-    }
-  }
-```  
-Now you are free to use whatever item data you wish, and test it to your heart content without worrying for download API limits.
-
-If you would like to prepare your own sample-item.json file. Here's [how-to](./HowTo-sample-items-file.md).
-
-#### Useful links:
-
-Dev docs
-- [Official Path of Exile Dev Docs](https://www.pathofexile.com/developer/docs)
-- [Chuanhsing's PoE complete API documentation with missing endpoins in PoE official dev docs](https://poedb.tw/us/poe-api)
-- [RePoe](https://github.com/brather1ng/RePoE) brather1ng repository of Path of Exile resources. Contains the generated data from GGPK file in JSON format
-- [Important changes in PoE for developers - official forum where Novynn post threads with changes for current temporary league](https://www.pathofexile.com/forum/view-forum/674)
-
-Tools
-- [Firefox extension documentation](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions)
-- [Scala documentation](https://docs.scala-lang.org/)
-- [Scala 2.12 Library](https://devdocs.io/scala~2.12_library/) parsed doc from previous site Library API but easier to search
-- [Itellij IDEA](https://www.jetbrains.com/idea/) Java IDE with native Scala support
-
-### How to build for iterative development
-#### Prequisites
-
-1. Have nvs (https://github.com/jasongin/nvs) installed for node (This version of ScalaJS needs node version 8 installed)
-2. Have java8 installed (https://github.com/frekele/oracle-java/releases) (This version of Scala doesn't support later jvms)
-3. Have SBT (Simple Build Tool) for compiling Scala into js. This is already __included__ in looty project (sbt-launch-0.13.0.jar).
-And is run via sbt or sbt-win.cmd commands.
-
-in the project root at command line:  
-#### Linux:
-
-    bin/sbt
-#### Windows:
-
-	bin\sbt-win.cmd
-    
-Build a development version with:  
-
-    fastOptJS
-    
-To generate .js on the fly, while you save any changes in code use:
-
-	~fastOptJS
-
-
-A javascript fill will be built at:  
-
-    looty/target/web/public/main/looty-fastopt.js
-
-This folder has the manifest and can be used with firefox for debugging:  
-
-    looty/target/web/public/main/
-
-Load it in firefox with `about:debugging` use looty-dev.html
-
-### How to build for firefox reviewers and release:
-
-Note: Firefox Add-on's come in form of .ixr files. Which are simply zip files with different extension. 
-
-Bump version number in:
-    
-    ./looty/src/main/public/manifest.json
-    ./looty/src/main/scala/looty/views/HomeView.scala
-    
- ### Linux:
- 
-    bin/deploy
-
-`/build/build.zip` will have the packaged file  
-`/build/buildffsrc.zip` will have firefox release package file
-
-#### Windows:
-
-    bin\sbt-win.cmd
-    
-in sbt, optional 
-
-    clean
-and    
-    
-    compile
-    fullOptJS    
-
-Because windows does not come with default zip command line tool, which could automate this part, we have to zip files ourselves. :crying_cat_face:  
-Zip following files and directories into choose-some-name.zip 
-(for installation in ff change extension to irx)
-    
-    jslib/
-    images/
-    less/
-    looty.html
-    popup.html
-    looty-opt.js
-    manifest.json
-    
-Additionaly for release version:    
-    
-    looty/
-    project/
-    bin/
-    README.md
 
 
 
