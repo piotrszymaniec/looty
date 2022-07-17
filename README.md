@@ -1,7 +1,6 @@
-# Looty - Player Stash Items manager
+# Looty - Stash Items Manager
 
 ### A browser extension for Path of Exile that makes inventory searching fun!
-
 
 Latest release [Chrome Web Store](https://chrome.google.com/webstore/detail/looty/ajfbflclpnpbjkfibijekgcombcgehbi?hl=en&gl=US)
 
@@ -33,7 +32,7 @@ Quoted from Steve Yegge's [Excellent Blog Post](http://steve-yegge.blogspot.com/
 ## Player Support
 Feel free to post bugs, questions, or feature requests [here](https://github.com/benjaminjackman/looty/issues)  
 Also in Lootys thread on official PathofExile forum [post](http://www.pathofexile.com/forum/view-thread/832233)  
-Please spread a word about Looty if you like it!  
+Please spread the word about Looty if you like it!  
 
 <a name="contribution" />
 
