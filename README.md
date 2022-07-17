@@ -1,4 +1,4 @@
-# Looty - Player Stash Items Data manager
+# Looty - Player Stash Items manager
 
 ### A browser extension for Path of Exile that makes inventory searching fun!
 
