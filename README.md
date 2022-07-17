@@ -52,7 +52,6 @@ Below you will find development instructions
 - [Important changes in PoE for developers - official forum where Novynn post threads with changes for current temporary league](https://www.pathofexile.com/forum/view-forum/674)
 
 **Tools**
-- [Firefox extension documentation](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions)
 - [Scala documentation](https://docs.scala-lang.org/)
 - [Scala 2.12 Library](https://devdocs.io/scala~2.12_library/) parsed doc from previous site Library API but easier to search
 - [Itellij IDEA](https://www.jetbrains.com/idea/) Java IDE with native Scala support
