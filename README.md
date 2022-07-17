@@ -640,9 +640,10 @@ latest changes to the APIs from the abyssal leagues.
 <a name="contribution" />
 
 
-Author's old[trello board](https://trello.com/b/xr7dx96M/looty).
+Author's old [trello board](https://trello.com/b/xr7dx96M/looty).
 <details><summary>Author's old todo's</summary>
 <p>
+	
 ```
 ### Newer todos:
 - Card Views
