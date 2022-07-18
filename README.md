@@ -167,11 +167,11 @@ If you would like to prepare your own sample-item.json file. Here's [how-to](./H
 
 ```
 ## Version History - last updates
-### 0.2.1.84 (2022-04-12)
+### 0.2.1.84 (2022-04-12) (piotrszymaniec contributed this update)
 Features
   - added cluster jewel filter type
 
-### 0.2.1.83 (2021-10-27)
+### 0.2.1.83 (2021-10-27) (piotrszymaniec contributed this update)
 Features
   - added Scourge items
     - new column scourged - to quickly check which items are scourged (works same as corrupted etc.)
@@ -186,7 +186,7 @@ Features
   example: you are looking for ring, but you would like to see all rings except breach ones, type in "!breach" in column "tpeln" 
   example: you are looking for all not crafted items, type in "!1" in column "crafted"
   
-### 0.2.1.82 (2021-07-12)
+### 0.2.1.82 (2021-07-12) (piotrszymaniec contributed this update)
 Features
   - added Recover # of Energy Shield on Kill
   - added Recover # Life on Kill
